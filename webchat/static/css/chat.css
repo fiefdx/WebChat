@@ -1,0 +1,333 @@
+.navbar,
+.navbar-inverse,
+.navbar-fixed-top {
+	border-width: 0px;
+}
+
+.collapse,
+.navbar-inverse 
+.navbar-collapse {
+	border-bottom-width: 0px;
+	border-style: none none none none;
+	background-image: url('../img/header.png');
+	background-repeat: no-repeat;
+	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+	background-size: cover;
+	color: rgb(   0,   0, 255);
+	border-top-color: rgb(   0,   0, 255);
+	border-right-color: rgb(   0,   0, 255);
+	border-bottom-color: rgb(   0,   0, 255);
+	border-left-color: rgb(   0,   0, 255);
+}
+
+body {
+	background-image: url('../img/macintosh.jpg');
+	background-repeat: no-repeat;
+	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+	background-size: cover;
+}
+
+.container {
+    max-width: 1920px;
+    padding-left:0; 
+    padding-right:0;
+}
+
+#row_container {
+    text-align: center;
+    margin-top: -43px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#rooms_div {
+    width: 200px; /*300*/
+    top: 60px;
+    position: absolute;
+    margin-left: 20px;
+}
+
+#rooms_list {
+    margin-top: 5px;
+    overflow-y: scroll; 
+    height: 300px; 
+    margin-left: 0%;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+#rooms_list_ul {
+    list-style: none outside none;
+    text-align: left;
+    margin-bottom: 0px;
+}
+
+.rooms_list_item {
+    height: 50px;
+    font-size: 16px;
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    
+    background-image: url('../img/item2.png');
+	background-repeat: no-repeat;
+	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+	background-size: cover;
+}
+
+.room_item_title {
+	color: rgb(17, 34, 204);
+    font-size: 14px; 
+    white-space: nowrap; 
+    overflow: hidden; 
+    overflow: ellipsis; 
+    padding : 0px;
+    margin-bottom: 10px;
+}
+
+#room_num_badge {
+    background-color: #9999CC;
+}
+
+#rooms_badge {
+    background-color: #6699CC;
+}
+
+.room_item_status {
+	font-size: 12px; 
+    color: rgb(92, 209, 0); 
+    padding : 0px;
+    margin-bottom: 0px;
+}
+
+#chat_area {
+    width: 500px;
+    left:220px;
+    min-width: 500px;
+    top: 60px;
+    position: absolute;
+    padding-right: 0px;
+}
+
+#chat_form {
+    padding-right: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+#div_chat_text {
+    padding-right: 20px; 
+    padding-left: 5px;
+    margin-left: 0%;
+    margin-top: 5px;
+}
+
+#chat_text {
+	overflow-y: scroll; 
+    height: 445px; 
+    font-size: 13px;
+    resize: none; 
+    color: #111111; 
+    margin-left: auto; 
+    margin-right: auto; 
+    display: block; 
+    width: 100%;
+    padding-left: 0px;
+    padding-right: 0px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-bottom-style: solid;
+    border-top-style: solid;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-top-width: 0.8px;
+    border-right-width: 0.8px;
+    border-left-width: 0.8px;
+    border-bottom-width: 0.8px;
+    border-color: rgb(204, 204, 204);
+    border-image-outset: 0 0 0 0;
+    border-image-repeat: stretch stretch;
+    box-shadow: rgba(0, 0, 0, 0.075) 0px 1px 1px 0px inset;
+}
+
+#chat_content {
+	padding: 0px;
+	margin-bottom: 0px;
+	border-width: 0px;
+	box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px;
+	
+}
+
+#chat_item {
+	overflow: auto;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	margin-bottom: 2px;
+	border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+	border-style: hidden hidden hidden hidden;
+	min-height: 0px;
+	border-image-width: 0 0 0 0;
+	border-width: 0 0 0 0 ;
+	border-top: 0 none;
+	background-color : transparent;
+}
+
+#chat_in_item {
+	padding-left: 5px;
+	padding-right: 5px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    background-color: rgb(  0, 206, 209);
+    text-align: left;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+#chat_in_self {
+	text-align: left;
+	padding-left: 5px;
+	padding-right: 5px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    background-color: rgb(135, 206, 250);
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    
+}
+
+#chat_system {
+	padding-left: 5px;
+	padding-right: 5px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    background-color: rgb(255, 165,   0);
+    text-align: center;
+    margin-bottom: 2px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-color: #ffffff;
+	border-style: hidden hidden hidden hidden;
+	min-height: 0px;
+	border-image-width: 0 0 0 0;
+	border-width: 0 0 0 0 ;
+}
+
+#chat_item_name {
+	border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    background-color: rgb( 65, 105, 225);
+}
+
+#chat_item_text {
+	padding-left: 0px;
+	padding-right: 0px;
+	word-wrap: break-word;
+	white-space: normal;
+}
+
+#button_div {
+    padding-right: 20px; 
+    padding-left: 5px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 5px;
+}
+
+#msg_text_div {
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-bottom: 4px;
+}
+
+#msg_text {
+    height: 445px; 
+    font-size: 13px;
+    resize: none; 
+    color: #111111; 
+    margin-left: auto; 
+    margin-right: auto; 
+    display: block; 
+    width: 100%;
+    padding-left: 4px;
+    padding-right: 4px;
+    background-color : rgb(176, 196, 222);
+}
+
+#nick_name_input {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	background-color : rgb(176, 196, 222);
+}
+
+#quit_button {
+    margin-left: auto;
+    margin-right: auto;
+    display: block; 
+    margin-top: 2px; 
+    padding: 0px 0px 0px; 
+    width: 90px; 
+    min-width: 80px;
+    height: 30px;
+}
+
+#send_button {
+    margin-left: auto;
+    margin-right: auto;
+    display: block; 
+    margin-top: 2px; 
+    padding: 0px 0px 0px; 
+    width: 90px; 
+    min-width: 80px;
+    height: 30px;
+}
+
+#form_change_room,
+#form_first_select,
+#empty_message {
+	margin-top: 120px;
+    margin-bottom: 0px; 
+    padding: 0px;
+}
+
+.modal-content {
+	color: #ffffff;
+    text-align: center;
+    background-image: url('../img/modal.png');
+	background-repeat: no-repeat;
+	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+	background-size: cover;
+}

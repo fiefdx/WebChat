@@ -1,0 +1,14 @@
+[Unit]
+Description=WebChat Service
+
+[Service]
+User=user_name
+Group=group_name
+Type=forking
+ExecStart=script_path/chat.sh start
+ExecStop=script_path/chat.sh stop
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

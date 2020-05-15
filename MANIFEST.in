@@ -1,0 +1,9 @@
+include README.md
+include webchat/configuration.yml.temp
+include webchat/install_systemd_service.sh
+include webchat/uninstall_systemd_service.sh
+include webchat/webchat.service.temp
+include webchat/chat.sh
+include webchat/README.md
+recursive-include webchat/templates *
+recursive-include webchat/static *

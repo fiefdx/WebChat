@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>
+        {% block title %}
+            Chat 
+        {% end %}
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block meta %}
+
+    {% end %}
+
+    <link href="{{ static_url('bootstrap/css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ static_url('bootstrap/css/bootstrap-theme.css') }}" rel="stylesheet" />
+    <link href="{{ static_url('css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ static_url('css/template.css') }}" rel="stylesheet" />
+    <script src="{{ static_url('jquery/jquery-2.0.3.js') }}"></script>
+    <script src="{{ static_url('bootstrap/js/bootstrap.js') }}"></script>
+
+    {% block stylesheet %}
+
+    {% end %}
+
+    {% block headscript %}
+
+    {% end %}
+</head>
+<body>
+    {% block header %}
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="navbar-header"> 
+            <!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button> -->
+            <a id="navbar_header" class="navbar-brand" href="/webchat/chat">Anonymous Chatting</a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-collapse">
+        </div>
+    </div>
+    {% end %}
+
+    <div id="body_container" class="container" >
+        <div id="body_row" class="row">
+            {% block body %}
+
+            {% end %}
+
+            {% block footer %}
+
+            {% end %}
+        </div>
+    </div>
+
+    {% block public_js %}
+    <script src="{{ static_url('js/base.js') }}"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        var msg = {'password_alert': 'The password must be a string, and can not contain spaces, and the length is greater than 6!'};
+        baseInit('Chat', 'http', 'en_US', msg);
+    });
+    </script>
+    {% end %}
+
+    {% block javascript %}
+
+    {% end %}
+</body>
+</html>
