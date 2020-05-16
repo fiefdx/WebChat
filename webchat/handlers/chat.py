@@ -42,7 +42,7 @@ class ChatSocketHandler(BaseSocketHandler):
         self.room_id = int(room_id)
         self.password = uuid4()
         ChatSocketHandler.rooms[self.room_id].add(self)
-        message = "* %s has joined" % (self.nickname)
+        message = "* %s joined" % (self.nickname)
         data = {}
         data["cmd"] = "init_rooms_list"
         data["msg"] = base64.b64encode(message.encode("utf-8")).decode("utf-8")
@@ -67,7 +67,7 @@ class ChatSocketHandler(BaseSocketHandler):
                 data = {}
                 ChatSocketHandler.rooms[self.room_id].remove(self)
                 data["cmd"] = "new_msg"
-                message = "System (%s) : %s has exited." % (now.strftime("%Y-%m-%d %H:%M:%S"), self.nickname)
+                message = "System (%s) : %s left." % (now.strftime("%Y-%m-%d %H:%M:%S"), self.nickname)
                 data["msg"] = base64.b64encode(message.encode("utf-8")).decode("utf-8")
                 ChatSocketHandler.rooms[self.room_id].broadcast(data)
 
@@ -75,7 +75,7 @@ class ChatSocketHandler(BaseSocketHandler):
                 self.room_id = room_id
                 ChatSocketHandler.rooms[self.room_id].add(self)
                 data["cmd"] = "new_msg"
-                message = "System (%s) : %s has joined." % (now.strftime("%Y-%m-%d %H:%M:%S"), self.nickname)
+                message = "System (%s) : %s joined." % (now.strftime("%Y-%m-%d %H:%M:%S"), self.nickname)
                 data["msg"] = base64.b64encode(message.encode("utf-8")).decode("utf-8")
                 ChatSocketHandler.rooms[self.room_id].broadcast(data)
             else:
@@ -83,7 +83,7 @@ class ChatSocketHandler(BaseSocketHandler):
                 self.room_id = room_id
                 ChatSocketHandler.rooms[self.room_id].add(self)
                 data["cmd"] = "new_msg"
-                message = "System (%s) : %s has joined." % (now.strftime("%Y-%m-%d %H:%M:%S"), self.nickname)
+                message = "System (%s) : %s joined." % (now.strftime("%Y-%m-%d %H:%M:%S"), self.nickname)
                 data["msg"] = base64.b64encode(message.encode("utf-8")).decode("utf-8")
                 ChatSocketHandler.rooms[self.room_id].broadcast(data)
 
@@ -125,7 +125,15 @@ class ChatSocketHandler(BaseSocketHandler):
 
     @gen.coroutine
     def on_close(self):
+        now = datetime.datetime.now()
         ChatSocketHandler.rooms[self.room_id].remove(self)
+
+        data = {}
+        data["cmd"] = "new_msg"
+        message = "System (%s) : %s left." % (now.strftime("%Y-%m-%d %H:%M:%S"), self.nickname)
+        data["msg"] = base64.b64encode(message.encode("utf-8")).decode("utf-8")
+        ChatSocketHandler.rooms[self.room_id].broadcast(data)
+
         data = {}
         data["cmd"] = "refresh_rooms_list"
         data["rooms_list"] = []
