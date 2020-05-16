@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 '''
-webchat
+WebChat: An anonymous chatting room service
 '''
 
 from setuptools import setup
@@ -16,7 +16,7 @@ setup(
     description = "webchat",
     long_description = long_description,
     long_description_content_type = "text/markdown",
-    url = "https://github.com/fiefdx/webchat",
+    url = "https://github.com/fiefdx/WebChat",
     author = "fiefdx",
     author_email = "fiefdx@163.com",
     packages = [

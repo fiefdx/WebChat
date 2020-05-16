@@ -15,7 +15,7 @@ An anonymous chatting room service, based on python3, tornado, websocket
 $ pip3 install webchat
 ```
 
-## Run WebChat
+## Run
 
 ### Configuration
 ```yaml
