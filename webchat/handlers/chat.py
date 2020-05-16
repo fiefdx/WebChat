@@ -125,6 +125,17 @@ class ChatSocketHandler(BaseSocketHandler):
 
     @gen.coroutine
     def on_close(self):
+        ChatSocketHandler.rooms[self.room_id].remove(self)
+        data = {}
+        data["cmd"] = "refresh_rooms_list"
+        data["rooms_list"] = []
+        for i in range(1, ChatSocketHandler.room_num + 1):
+            room_info = {
+                "room_id": ChatSocketHandler.rooms[i].room_id,
+                "current_members": ChatSocketHandler.rooms[i].current_members,
+            }
+            data["rooms_list"].append(room_info)
+        self.broadcast_all(data)
         self.close()
         LOG.info("close websocket")
 
@@ -146,6 +157,3 @@ class ChatSocketHandler(BaseSocketHandler):
         msg_bytes = base64.b64decode(msg)
         result_string = str_decrypt(msg_bytes, key)
         return result_string
-
-
-

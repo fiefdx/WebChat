@@ -18,7 +18,7 @@ function chatInit (scheme, locale, rooms_num) {
     var local = window.location.host;
     var uri_scheme = (scheme == 'https')? 'wss://' : 'ws://';
     var uri = uri_scheme + local + '/websocket/chat/0';
-    console.log('Uri: ' + uri)
+    // console.log('Uri: ' + uri)
     
     var WebSocket = window.WebSocket || window.MozWebSocket;
     if (WebSocket) {

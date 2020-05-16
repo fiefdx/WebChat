@@ -92,10 +92,8 @@ def str_encrypt(v, k, iterations = 32):
     fill_bytes = []
     for i in range(fill_n):
         fill_bytes.append(randint(0, 0xff))
-        # fill_s = fill_s + chr(randint(0, 0xff))
         # fill_s = fill_s + chr(0x02)
     fill_s = bytes(fill_bytes)
-    # v = (chr((fill_n - 2) | fill_n_or).encode("utf-8") + fill_s + v + end_char * 7)
     v = bytes([(fill_n - 2) | fill_n_or]) + fill_s + v + end_char * 7
 
     for i in range(0, len(v), 8):
@@ -112,7 +110,7 @@ def str_encrypt(v, k, iterations = 32):
             cipertext = struct.unpack(">Q", encrypt_text)[0]
             pre_plaintext = plaintext
     # bin to ascii return is str not unicode
-    return result # binascii.hexlify(result).decode("utf-8")
+    return result
 
 def str_decrypt(v, k, iterations = 32):
     '''
@@ -121,8 +119,6 @@ def str_decrypt(v, k, iterations = 32):
     iterations must be 32 or 64
     return string
     '''
-    # v = v.encode("utf-8") if isinstance(v, str) else v
-    # v = v.encode("utf-8") if isinstance(v, str) else binascii.unhexlify(v)
     k = str(k)
     iterations = 64 if iterations > 32 else 32
     # ascii to bin
