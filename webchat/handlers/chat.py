@@ -12,6 +12,8 @@ from tornado import gen
 
 from webchat.handlers.base import BaseHandler, BaseSocketHandler
 from webchat.modules.room import Rooms
+from webchat.utils.pytea import str_encrypt, str_decrypt
+from webchat.utils.common import md5twice
 from webchat.config import CONFIG
 
 LOG = logging.getLogger("__name__")
@@ -56,11 +58,11 @@ class ChatSocketHandler(BaseSocketHandler):
 
     @gen.coroutine
     def on_message(self, msg):
+        now = datetime.datetime.now()
         msg = json.loads(msg)
         cmd = msg["cmd"]
         if cmd == "change_room":
             room_id = int(msg["room_id"])
-            now = datetime.datetime.now()
             if room_id != 0:
                 data = {}
                 ChatSocketHandler.rooms[self.room_id].remove(self)
@@ -104,7 +106,22 @@ class ChatSocketHandler(BaseSocketHandler):
             data["nick_name"] = base64.b64encode(self.nickname.encode("utf-8")).decode("utf-8")
             self.write_message(data)
         elif cmd == "send_msg":
-            pass
+            room_id = int(msg["room_id"])
+            nickname_base64 = msg["nick_name"]
+            default_name_base64 = msg["default_nick_name"]
+            msg_base64 = msg["msg"]
+
+            msg_string = self.decrypt_msg(msg_base64)
+
+            data = {}
+            if room_id != 0:
+                data["cmd"] = "new_msg"
+                data["date_time"] = now.strftime("%Y-%m-%d %H:%M:%S")
+                data["nick_name"] = nickname_base64
+                data["default_nick_name"] = default_name_base64
+                data["encrypt"] = msg_string
+                data["msg"] = msg_string
+                ChatSocketHandler.rooms[room_id].broadcast(data)
 
     @gen.coroutine
     def on_close(self):
@@ -118,5 +135,17 @@ class ChatSocketHandler(BaseSocketHandler):
     def broadcast_all(self, msg):
         for i in range(ChatSocketHandler.room_num + 1):
             ChatSocketHandler.rooms[i].broadcast(msg)
+
+    def encrypt_msg(self, msg):
+        key = md5twice(self.password.hex)
+        result_string = str_encrypt(msg, key)
+        return base64.b64encode(result_string).decode("utf-8")
+
+    def decrypt_msg(self, msg):
+        key = md5twice(self.password.hex)
+        msg_bytes = base64.b64decode(msg)
+        result_string = str_decrypt(msg_bytes, key)
+        return result_string
+
 
 

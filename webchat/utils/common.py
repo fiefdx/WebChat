@@ -117,6 +117,16 @@ class OperationError(Exception):
         self.message = message
 
 
+def md5twice(content):
+    '''
+    param content must be unicode
+    result is unicode
+    '''
+    m = hashlib.md5(content.encode("utf-8")).hexdigest()
+    result = hashlib.md5(m.encode("utf-8")).hexdigest()
+    return result
+
+
 def file_sha1sum(file_path):
     sha1 = hashlib.sha1()
     with open(file_path, 'rb') as f:

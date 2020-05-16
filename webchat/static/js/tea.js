@@ -179,7 +179,7 @@ Tea.teaStrDecrypt = function (v, k, length, tea_sum) {
 
 Tea.strEncrypt = function (v, k) { // v: string, k: string
     var hex_k = SparkMD5.hash(SparkMD5.hash(k));
-    //console.log("hex_k: " + hex_k);
+    // console.log("hex_k: " + hex_k);
     var int_k = Tea.hexStrToInts(hex_k);
     //console.log("int_k: " + int_k);
     var s_b64 = Base64.encode(v);
@@ -195,17 +195,17 @@ Tea.strEncrypt = function (v, k) { // v: string, k: string
 
 Tea.strDecrypt = function (v, k) { // v: string base64, k: string
     var hex_k = SparkMD5.hash(SparkMD5.hash(k));
-    //console.log("hex_k: " + hex_k);
+    // console.log("hex_k: " + hex_k);
     var int_k = Tea.hexStrToInts(hex_k);
-    //console.log("int_k: " + int_k);
+    // console.log("int_k: " + int_k);
     var s_str = Base64.decode(v);
-    //console.log("s_str: " + s_str.toSource());
+    // console.log("s_str: " + s_str);
     var int_v = Tea.strToInts(s_str);
-    //console.log("int_v: " + int_v);
+    // console.log("int_v: " + int_v);
     var pos = Tea.teaStrDecrypt(int_v, int_k, int_v.length, 32);
-    //console.log("int_v: " + int_v);
+    // console.log("int_v: " + int_v);
     var b64 = Tea.intsParseStr(int_v, pos);
-    //console.log("d_base64: " + b64);
+    // console.log("d_base64: " + b64);
     return Base64.decode(b64);
 }
 

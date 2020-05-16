@@ -23,11 +23,18 @@ class Room(object):
 
     def broadcast(self, msg):
         try:
+            encrypt = ""
+            if "encrypt" in msg:
+                encrypt = msg["encrypt"]
+                msg["encrypt"] = ""
             dead_connections = []
             for conn in self.connections:
                 try:
+                    if "encrypt" in msg:
+                        msg["msg"] = conn.encrypt_msg(encrypt)
                     conn.write_message(msg)
                 except Exception as e:
+                    LOG.exception(e)
                     dead_connections.append(conn)
             for conn in dead_connections:
                 conn.close()
