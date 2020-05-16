@@ -14,19 +14,28 @@ import tornado.web
 
 from webchat.version import __version__
 from webchat.handlers import info
+from webchat.handlers import chat
 from webchat.utils import common
 from webchat.config import CONFIG, load_config
 from webchat import logger
 
 LOG = logging.getLogger(__name__)
 
+cwd = os.path.split(os.path.realpath(__file__))[0]
+
 
 class Application(tornado.web.Application):
     def __init__(self):
         handlers = [
             (r"/", info.AboutHandler),
+            (r"/chat", chat.ChatHandler),
+            (r"/websocket/chat/(?P<room_id>.*)", chat.ChatSocketHandler),
         ]
-        settings = dict(debug = False)
+        settings = dict(
+            debug = False,
+            template_path = os.path.join(cwd, "templates"),
+            static_path = os.path.join(cwd, "static")
+        )
         tornado.web.Application.__init__(self, handlers, **settings)
 
 
