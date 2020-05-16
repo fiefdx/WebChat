@@ -82,6 +82,7 @@ function chatInit (scheme, locale, rooms_num) {
                 if (data.nick_name && data.msg && data.date_time && data.default_nick_name) {
                     var msg_nick_name = Base64.decode(data.default_nick_name);
                     if (msg_nick_name != default_nick_name) {
+                        var msg = Utf8.decode(Tea.strDecrypt(data.msg, password));
                         $chat_content.append('<div id="chat_item" class="list-group-item col-xs-12">' + 
                                                 '<div id="chat_in_item" class="col-xs-9">' + 
                                                     '<span id="nick_name">' +
@@ -91,10 +92,11 @@ function chatInit (scheme, locale, rooms_num) {
                                                         " " + data.date_time + " " + 
                                                     '</span><br/>' +
                                                     '<span id="chat_item_text" class="col-xs-12">' +
-                                                    Utf8.decode(Tea.strDecrypt(data.msg, password)) + 
+                                                    msg + 
                                                     '</span>' + 
                                                 '</div>' + 
                                             '</div>');
+                        notify("WebChat Message", msg);
                     } else {
                         $chat_content.append('<div id="chat_item" class="list-group-item col-xs-12">' + 
                                                 '<div id="chat_in_self" class="pull-right col-xs-9">' + 
@@ -196,6 +198,21 @@ function chatInit (scheme, locale, rooms_num) {
         $('a#a_' + current_room_id).attr("class","rooms_list_item list-group-item active");
         socket.send(JSON.stringify(data));
         $chat_content.empty();
+    }
+
+    function notify(title, msg) {
+        if (!("Notification" in window)) {
+            alert("This browser does not support desktop notification");
+        } else if (Notification.permission === "granted") {
+            // If it's okay let's create a notification
+            var notification = new Notification(title, {"body": msg});
+        } else if (Notification.permission !== 'denied') {
+            Notification.requestPermission(function (permission) {
+                if (permission === "granted") {
+                    var notification = new Notification(title, {"body": msg});
+                }
+            });
+        }
     }
     
     var entityMap = {

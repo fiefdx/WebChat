@@ -27,7 +27,7 @@ cwd = os.path.split(os.path.realpath(__file__))[0]
 class Application(tornado.web.Application):
     def __init__(self):
         handlers = [
-            (r"/", info.AboutHandler),
+            (r"/", info.RedirectHandler),
             (r"/chat", chat.ChatHandler),
             (r"/websocket/chat/(?P<room_id>.*)", chat.ChatSocketHandler),
         ]
